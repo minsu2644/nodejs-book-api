@@ -1,7 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const port = 3000; // 서버 포트 설정
+// Render 환경 변수(PORT)를 사용하거나, 없으면 로컬에서 3000을 사용
+const port = process.env.PORT || 3000; 
 
 // 미들웨어 설정
 // JSON 형식의 요청 본문(Body)을 파싱하기 위해 사용
@@ -22,7 +23,7 @@ let books = [
 let nextId = 3; 
 
 // ------------------------------------
-// --- 2단계: API 라우팅 (CRUD) ---
+// --- API 라우팅 (CRUD) ---
 // ------------------------------------
 
 // [R] 전체 도서 조회 (GET /api/books)
@@ -81,5 +82,5 @@ app.delete('/api/books/:id', (req, res) => {
 
 // --- 서버 실행 ---
 app.listen(port, () => {
-    console.log(`도서 관리 API 서버가 http://localhost:${port} 에서 실행 중입니다.`);
+    console.log(`도서 관리 API 서버가 포트 ${port} 에서 실행 중입니다.`);
 });
